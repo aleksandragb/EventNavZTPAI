@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins&display=swap');
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+
+}
+
+.container_change {
+    width: 100vw;
+    height: 75vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.title {
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: normal;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.login-container {
+    width: 50%;
+}
+
+form.login, form.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    background: #FFFFFFE0 0% 0% no-repeat padding-box;
+}
+
+form.register {
+    height: fit-content;
+}
+
+form.register input {
+    padding-left: 10px;
+}
+
+.iconlogin, .iconpassword {
+    background-color: transparent;
+}
+
+.btn {
+    background-color: #30B374;
+    box-shadow: 0px 3px 6px #00000018;
+    width: 271px;
+    height: 58px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.signup {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0em;
+}
+
+.signup a {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+
+.form-group {
+    position: relative;
+
+}
+
+.login {
+    margin-bottom: 0em;
+    margin-top: 1em;
+}
+
+.icon_login::before {
+    content: url('./src/images/email.png');
+    top: 40%;
+    transform: scale(.8);
+}
+
+.icon_password::before {
+    content: url('./src/images/password.png');
+    transform: scale(.7);
+    top: 37%;
+}
+
+.icon_login::before, .icon_password::before {
+    position: absolute;
+    left: 25px;
+    width: 20px;
+    height: 20px;
+}
+
+.iconlogin,
+.iconpassword {
+    padding-left: 40px;
+    width: 277px;
+}
+
+.iconlogin, .iconpassword, .btn {
+    border-radius: 12px;
+    width: 317px;
+    height: 56px;
+    border: 1px solid #E4DFDF;
+    margin: 1em;
+    flex-shrink: 0;
+
+}
+
+.favorite-header {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.favorite-header h2 {
+    font-size: 1.5rem;
+    /* Możesz dostosować wielkość czcionki według potrzeb */
+    margin: 0;
+}
+
+@media screen and (max-aspect-ratio: 16/9) {
+    .container {
+        flex-direction: column;
+    }
+
+    * {
+        font-size: 12px;
+    }
+
+
+    .login-container,
+    .logo {
+        height: 90%;
+        margin-top: 1em;
+        padding-top: 1em;
+    }
+
+    form {
+        margin: auto;
+    }
+
+}
