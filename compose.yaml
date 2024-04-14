@@ -15,10 +15,10 @@ services:
     networks:
       - spring-postgres
     environment:
-      - POSTGRES_DB=example
-      - POSTGRES_PASSWORD=test
-      - PGUSER=test
-      - POSTGRES_USER=test
+      - POSTGRES_DB=EventApp
+      - POSTGRES_PASSWORD=014g
+      - PGUSER=root
+      - POSTGRES_USER=root
     expose:
       - 5432
   frontend:
