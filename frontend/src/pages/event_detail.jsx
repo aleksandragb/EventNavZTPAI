@@ -1,25 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import TopPanel from './top_panel'; 
 import BottomPanel from './bottom_panel'; 
 import './home.css'; 
 
 function EventDetail() {
-    const { eventId } = useParams();
-    const events = [
-        { id: 1, title: "Event 1", date: "2024-04-12", place: "Place 1", photo: "photo1.jpg", description: "Description of Event 1" },
-        { id: 2, title: "Event 2", date: "2024-04-13", place: "Place 2", photo: "photo2.jpg", description: "Description of Event 2" },
-    ];
+    const { eventId} = useParams();
+    const [event, setEvent] = useState(null);
+    const [isInterested, setIsInterested] = useState(false);
 
-    const event = events.find(event => event.id === parseInt(eventId));
+    useEffect(() => {
+        const fetchEvent = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/events/${eventId}`, {
+                    headers: { Authorization: `Bearer ${sessionStorage.getItem('authToken')}` } // Assuming you store your token in sessionStorage
+                });
+                setEvent(response.data);
+                setIsInterested(response.data.isInterested); // Update this part based on your actual data structure
+            } catch (error) {
+                console.error('Failed to fetch event details:', error);
+            }
+        };
+
+        fetchEvent();
+    }, [eventId]);
+
     if (!event) {
         return <div>Event not found</div>;
     }
 
-    const [isInterested, setIsInterested] = useState(events.find(event => event.id === parseInt(eventId)).isInterested);
-
     const handleInterestedToggle = () => {
-        setIsInterested(!isInterested);      
+        setIsInterested(!isInterested);
+        // You may also want to send a request to update the server here
     };
 
     return (

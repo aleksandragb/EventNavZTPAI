@@ -8,35 +8,34 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "events")
-public class Event {
+@Table(name = "reported")
+public class ReportedEvent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long event_id;
-
-    @Column(name = "title", nullable = false)
+    private Long reported_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
     private String title;
-
-    @Column(name = "date", nullable = false)
     private LocalDate date;
-
-    @Column(name = "place", nullable = false)
     private String place;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private EventCategory category;
 
-    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "photo", nullable = false, length = 1024)
+    @Column(length = 1024)
     private String photo;
+
+
 }
