@@ -4,6 +4,7 @@ import TopPanel from './top_panel';
 import BottomPanel from './bottom_panel';
 
 function InterestedPage() {
+    
     return(
         <div>
             <TopPanel />

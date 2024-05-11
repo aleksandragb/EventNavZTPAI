@@ -9,7 +9,7 @@ function LoginPage() {
   const navigate = useNavigate(); // Hook do nawigacji
 
   const handleLogin = async (event) => {
-    event.preventDefault(); // Zapobiegaj domyślnemu zachowaniu formularza
+    event.preventDefault(); 
 
     try {
       const response = await axios.post('http://localhost:8080/api/auth/authenticate', {

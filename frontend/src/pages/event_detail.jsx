@@ -14,10 +14,10 @@ function EventDetail() {
         const fetchEvent = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/events/${eventId}`, {
-                    headers: { Authorization: `Bearer ${sessionStorage.getItem('authToken')}` } // Assuming you store your token in sessionStorage
+                    headers: { Authorization: `Bearer ${sessionStorage.getItem('authToken')}` } 
                 });
                 setEvent(response.data);
-                setIsInterested(response.data.isInterested); // Update this part based on your actual data structure
+                setIsInterested(response.data.isInterested); 
             } catch (error) {
                 console.error('Failed to fetch event details:', error);
             }
