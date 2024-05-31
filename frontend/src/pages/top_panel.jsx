@@ -22,11 +22,6 @@ function TopPanel({ isAdmin, showSearchBar }) {
                     </div>
                 )}
             </div>
-            <div className="right">
-                <button id="notification-btn">
-                    <i className="material-icons">notifications_none</i>
-                </button>
-            </div>
         </div>
     );
 }

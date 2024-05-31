@@ -30,9 +30,8 @@ public class EventsService {
                 .collect(Collectors.toList());
     }
     public List<EventDTO> getEvents() {
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        return interestsRepository.findAllByUserEmail(userEmail).stream()
-                .map(interest -> mapToDTO(interest.getEvent()))
+        return eventRepository.findAll().stream()
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
     public EventDTO getEvent(Long eventId) {

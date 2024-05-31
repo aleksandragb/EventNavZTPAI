@@ -40,6 +40,19 @@ body, h1, h2, p, button, input {
     margin-bottom: 30px;
 }
 
+.notification-modal {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #fff;
+    filter: drop-shadow(0px -3px 8px rgba(157, 178, 214, 0.13));
+    padding: 10px;
+    align-items: center;
+    z-index: 50;
+    bottom: 30px;
+    right: 0%;
+}
+
 input {
     background-color: transparent;
     border-radius: 12px;
@@ -54,8 +67,11 @@ input {
 }
 
 .right {
+    position: relative;
     display: flex;
-    align-items: center;
+    align-items: end;
+    margin-left: 90%;
+    margin-top: 20px;
 }
 
 .notifications {
@@ -147,6 +163,22 @@ input {
     cursor: pointer;
 }
 
+.button-data {
+    display: inline-block;
+    background: #767676;
+    box-shadow: 0px 10px 35px rgba(111, 126, 201, 0.25);
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    border: 1px solid #E4DFDF;
+    color: white;
+    cursor: pointer;
+    width: 20%;
+    height: 20%;
+    margin-left: 10px;
+}
+
 .button:hover {
     background-color: #3f3f3f;
 }
@@ -187,12 +219,16 @@ input {
     transform: scale(1.5);
 }
 
-.event-description {
+.description {
     padding-top: 20px;
     text-align: center;
     max-width: 600px;
     word-wrap: break-word;
     margin: 0 auto;
+}
+
+.title-notification {
+    display: flex;
 }
 
 .event-title {
@@ -300,6 +336,7 @@ input {
     display: flex;
     justify-content: center;
 }
+
 
 @media screen and (max-aspect-ratio: 16/9) {
     .top-panel {
