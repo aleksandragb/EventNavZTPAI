@@ -18,4 +18,5 @@ public class EventDTO {
     private String description;
     private String photo;
 
+
 }

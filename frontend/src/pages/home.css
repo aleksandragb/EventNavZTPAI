@@ -9,8 +9,6 @@ body, h1, h2, p, button, input {
 .top-panel {
     display: flex;
     justify-content: space-between;
-    /*align-items: center;*/
-    /*color: white;*/
     padding: 10px;
     margin: 15px;
 }
@@ -18,6 +16,10 @@ body, h1, h2, p, button, input {
 .left {
     display: flex;
     align-items: center;
+}
+
+.main-text-container {
+    text-align: center;
 }
 
 .menu {
@@ -64,6 +66,11 @@ input {
     font-family: 'Noto Sans', sans-serif;
     padding-left: 10px;
 
+}
+
+input[type="datetime-local"] {
+    width: 200px;
+    height: 30px;
 }
 
 .right {
@@ -174,8 +181,8 @@ input {
     border: 1px solid #E4DFDF;
     color: white;
     cursor: pointer;
-    width: 20%;
-    height: 20%;
+    width: 30%;
+    height: 30%;
     margin-left: 10px;
 }
 
@@ -337,6 +344,20 @@ input {
     justify-content: center;
 }
 
+.option-in-menu, .option-liked-in-menu {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    text-decoration: underline;
+}
+
+.option-liked-in-menu {
+    margin-bottom: 30px;
+}
 
 @media screen and (max-aspect-ratio: 16/9) {
     .top-panel {
@@ -396,7 +417,6 @@ input {
 
     .icon-buttons span {
         display: none;
-        /* Ukrywa tekst */
     }
 
     .favorite-header {
@@ -425,4 +445,5 @@ input {
         justify-content: center;
         width: 70%;
     }
+
 }

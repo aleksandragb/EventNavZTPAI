@@ -1,11 +1,18 @@
 import React from 'react';
 
-function SearchBar() {
+function SearchBar({ searchQuery, setSearchQuery }) {
     return (
-      <div className="search-bar">
-        <input className="srch-bar "type="text" name="query" placeholder="Search events..." required />
-        {/* Tutaj możesz dodać obsługę wyszukiwania */}
-      </div>
+        <div className="search-bar">
+            <input
+                className="srch-bar"
+                type="text"
+                name="query"
+                placeholder="Search events..."
+                required
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+        </div>
     );
-  }
-  export default SearchBar;
+}
+export default SearchBar;

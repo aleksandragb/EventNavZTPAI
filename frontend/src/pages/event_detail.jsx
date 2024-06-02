@@ -11,22 +11,51 @@ function EventDetail() {
     const [isInterested, setIsInterested] = useState(false);
     const [showNotificationModal, setShowNotificationModal] = useState(false);
     const [notificationDate, setNotificationDate] = useState('');
+    const [error, setError] = useState(null); 
 
     useEffect(() => {
+        const authToken = sessionStorage.getItem('authToken');
+        const config = {
+            headers: {}
+        };
+        if (authToken) {
+            config.headers.Authorization = `Bearer ${authToken}`;
+        }
+    
         const fetchEvent = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/events/${eventId}`, {
-                    headers: { Authorization: `Bearer ${sessionStorage.getItem('authToken')}` } 
-                });
+                const response = await axios.get(`http://localhost:8080/api/events/${eventId}`, config);
                 setEvent(response.data);
-                setIsInterested(response.data.isInterested); 
             } catch (error) {
                 console.error('Failed to fetch event details:', error);
+                setError('Failed to fetch event details');
             }
         };
-
+    
+        const fetchIsInterested = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/interests/isInterested/${eventId}`, config);
+                setIsInterested(response.data);
+                console.log("Interest status: ", response.data);
+            } catch (error) {
+                console.error('Failed to fetch interest status:', error);
+                setError('Failed to fetch interest status');
+            }
+        }
+    
         fetchEvent();
+        fetchIsInterested();
     }, [eventId]);
+    
+    
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    if (!event) {
+        return <div>Loading...</div>;
+    }
 
     const handleNotificationSubmit = async () => {
         const payload = {
@@ -43,7 +72,7 @@ function EventDetail() {
           setNotificationDate('');
         } catch (error) {
           console.error('Error setting notification:', error);
-          alert('Failed to set notification.');
+          alert('Failed to set notification. \nLog in if you want to send a notification');
         }
       };
 
@@ -51,10 +80,29 @@ function EventDetail() {
         return <div>Event not found</div>;
     }
 
-    const handleInterestedToggle = () => {
-        setIsInterested(!isInterested);
-        // You may also want to send a request to update the server here
+
+    const handleInterestedToggle = async () => {
+        const authToken = sessionStorage.getItem('authToken');
+        if(!authToken) {
+            alert("You need to log in to perform this operation");
+            return;
+        }
+
+        const url = `http://localhost:8080/api/interests/${isInterested ? 'remove' : 'add'}/${eventId}`;
+        const config = { headers: { Authorization: `Bearer ${authToken}` } }
+    
+        console.log(isInterested);
+        console.log(authToken);
+        console.log(url);
+        try {
+            await axios.post(url, {}, config);
+            setIsInterested(!isInterested);
+        } catch (error) {
+            console.error('Failed to update interest:', error);
+            alert('Failed to update interest. Please try again.');
+        }
     };
+    
 
     return (
         <div>

@@ -38,7 +38,4 @@ public class EventsController {
         EventDTO event = eventsService.getEvent(id);
         return ResponseEntity.ok(event);
     }
-
-
 }
-

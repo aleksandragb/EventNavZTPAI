@@ -5,33 +5,47 @@ import './home.css';
 import TopPanel from './top_panel';
 import SearchBar from './searchbar';
 import BottomPanel from './bottom_panel';
+import FilterBar from './filters';
 
 function HomePage() {
     const [events, setEvents] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const fetchEvents = async () => {
+            const token = sessionStorage.getItem('authToken');
+            const config = {
+                headers: {}
+            };
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
             try {
-                const response = await axios.get('http://localhost:8080/api/events', {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
-                    }
-                });
+                const response = await axios.get('http://localhost:8080/api/events', config);
                 setEvents(response.data);
             } catch (error) {
                 console.error('Failed to fetch events:', error);
             }
         };
-
+    
         fetchEvents();
     }, []);
+
+    
+    const filteredEvents = events.filter(event => {
+        return event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+               event.description.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    
 
     return (
         <div>
             <TopPanel />
-            <SearchBar showSearchBar={true} />
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            <FilterBar />
             <div className="event-container">
-                {events.map(event => (
+                {filteredEvents.length > 0 ? (
+                    filteredEvents.map(event => (
                     <div key={event.event_id} className="event">
                         <img className="event_photo" src={event.photo} alt="Event Photo" />
                         <h3 className="event-title">{event.title}</h3>
@@ -39,10 +53,13 @@ function HomePage() {
                         <p>Place: {event.place}</p>
                         <Link to={`/event_detail/${event.event_id}`} className="button">Show more</Link>
                     </div>
-                ))}
-            </div>
-            <BottomPanel />
+                ))
+            ) : (
+                <div>No results found</div>
+            )}
         </div>
+        <BottomPanel />
+    </div>
     );
 }
 

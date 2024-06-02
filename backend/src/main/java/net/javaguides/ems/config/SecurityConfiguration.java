@@ -46,10 +46,11 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/interests/**").authenticated()
-                        .requestMatchers("/api/events/interested").authenticated()
+                        .requestMatchers("/api/interests/**").permitAll()
+                        .requestMatchers("/api/events/interested/**").authenticated()
                         .requestMatchers("/api/events/**").permitAll()
                         .requestMatchers("/api/notifications/**").permitAll()
+                        .requestMatchers("api/users/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

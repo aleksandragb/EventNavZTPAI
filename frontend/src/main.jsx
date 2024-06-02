@@ -10,8 +10,10 @@ import RegisterPage from './pages/register';
 import HomePage from './pages/home';
 import ContactUsPage from './pages/contact_us';
 import EventDetail from './pages/event_detail';
+import ProtectedRoute from './pages/protected_route';
 import InterestedPage from './pages/interested';
 import AccountPage from './pages/account';
+import ReportPage from './pages/report';
 
 const router = createBrowserRouter([
   {
@@ -39,13 +41,16 @@ const router = createBrowserRouter([
     element: <EventDetail />,
   },
   {
-    path: "/interested", 
-    element: <InterestedPage />,
+    path: "/interested",
+    element: <ProtectedRoute element={InterestedPage} />
   },
-
   {
-    path: "/account", 
-    element: <  AccountPage />,
+    path: "/account",
+    element: <ProtectedRoute element={AccountPage} />,
+  },
+  {
+    path: "/report",
+    element: <ProtectedRoute element={ReportPage} />,
   },
 ]);
 
