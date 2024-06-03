@@ -24,6 +24,12 @@ public class NotificationController {
     @Autowired
     private EmailService emailService;
 
+//    @PostMapping
+//    public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO notificationDTO) {
+//        NotificationDTO createdNotification = notificationService.createNotification(notificationDTO);
+//        return ResponseEntity.ok(createdNotification);
+//    }
+
     @PostMapping
     public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO notificationDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
