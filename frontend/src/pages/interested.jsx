@@ -14,7 +14,7 @@ function InterestedPage() {
             const config = { headers: { Authorization: `Bearer ${authToken}` } };
             try {
                 const response = await axios.get('http://localhost:8080/api/events/interested', config);
-                setInterestedEvents(response.data); // Zakładam, że API zwraca listę wydarzeń
+                setInterestedEvents(response.data); 
             } catch (error) {
                 console.error('Failed to fetch interested events:', error);
             }
