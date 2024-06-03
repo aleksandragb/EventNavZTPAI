@@ -18,7 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Endpoint do aktualizacji emaila
     @PutMapping("/update-email")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> updateEmail(@RequestBody UpdateEmailDTO updateEmailDTO, Principal principal) {
@@ -26,7 +25,6 @@ public class UserController {
         return ResponseEntity.ok(newToken);
     }
 
-    // Endpoint do aktualizacji hasła
     @PutMapping("/update-password")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordDTO updatePasswordDTO, Authentication authentication) {
