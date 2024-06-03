@@ -30,15 +30,7 @@ public class InterestsService {
         interest.setEvent(event);
         interestsRepository.save(interest);
     }
-//    public void removeInterest(Long eventId) {
-//        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-//        User user = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("User not found."));
-//        Event event = eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found."));
-//
-//        Interests interest = interestsRepository.findByUserAndEvent(user, event)
-//                .orElseThrow(() -> new RuntimeException("Interest not found."));
-//        interestsRepository.delete(interest);
-//    }
+
 public void removeInterest(Long eventId) {
     String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
     User user = userRepository.findByEmail(userEmail)

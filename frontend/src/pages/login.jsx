@@ -44,8 +44,8 @@ function LoginPage() {
                     </div>
                     <button className='btn' type="submit">SIGN IN</button>
             </form>
-            <p className="signup">Don't have an account? <a href="/register">Sign up</a></p>
         </div>
+        <p className="signup">Don't have an account? <a href="/register">Sign up</a></p>
     </div>
   );
 }

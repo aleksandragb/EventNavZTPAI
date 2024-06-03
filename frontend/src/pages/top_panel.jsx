@@ -49,8 +49,8 @@ function TopPanel() {
             </button>
                 {isMenuOpen && (
                     <div className="menu">
-                        <button className="option-liked-in-menu" onClick={handleAccountClick}>My Account</button>
-                        <button className="option-liked-in-menu" onClick={handleLikedClick}>Liked</button>
+                        <button className="option-in-menu-op" onClick={handleAccountClick}>My Account</button>
+                        <button className="option-in-menu-op" onClick={handleLikedClick}>Liked</button>
                         <a href="/contact_us">Contact Us</a>
                         {getUserRoleFromToken() === "ADMIN" && (<a href="/add_event">Add Event</a>)}
                         {isLoggedIn ? (

@@ -8,7 +8,6 @@ import net.javaguides.ems.service.JwtService;
 import net.javaguides.ems.entity.Role;
 import net.javaguides.ems.repository.UserRepository;
 import net.javaguides.ems.entity.User;
-//import org.springframework.security.core.userdetails.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +28,6 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-//                .admin(false)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
