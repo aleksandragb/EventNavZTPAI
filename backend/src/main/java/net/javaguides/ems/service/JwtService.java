@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import net.javaguides.ems.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +30,22 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        // Pobieranie roli użytkownika i dodawanie do claims
+        User user = (User) userDetails;
+        claims.put("role", user.getRole().name()); // Dodawanie roli do tokena
+
+        return Jwts
+                .builder()
+                .setClaims(claims)
+                .setSubject(user.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // Przykładowy czas wygaśnięcia
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
+
 
     public String generateToken(
             Map<String, Object> extraClaims,

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
-function TopPanel({ isAdmin, showSearchBar }) {
+
+function TopPanel() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -31,7 +33,14 @@ function TopPanel({ isAdmin, showSearchBar }) {
             navigate('/login');
         }
     }
-
+    function getUserRoleFromToken() {
+        const token = sessionStorage.getItem('authToken');
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            return decodedToken.role;
+        }
+        return null;
+    }
     return (
         <div className="top-panel">
             <div className="left">
@@ -43,7 +52,7 @@ function TopPanel({ isAdmin, showSearchBar }) {
                         <button className="option-liked-in-menu" onClick={handleAccountClick}>My Account</button>
                         <button className="option-liked-in-menu" onClick={handleLikedClick}>Liked</button>
                         <a href="/contact_us">Contact Us</a>
-                        {isAdmin && <a href="/addEvent">Add Event</a>}
+                        {getUserRoleFromToken() === "ADMIN" && (<a href="/add_event">Add Event</a>)}
                         {isLoggedIn ? (
                             <button className="option-in-menu" onClick={handleLogout}>Sign Out</button>
                         ) : (

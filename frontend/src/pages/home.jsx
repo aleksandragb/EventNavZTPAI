@@ -5,7 +5,6 @@ import './home.css';
 import TopPanel from './top_panel';
 import SearchBar from './searchbar';
 import BottomPanel from './bottom_panel';
-import FilterBar from './filters';
 
 function HomePage() {
     const [events, setEvents] = useState([]);
@@ -42,7 +41,6 @@ function HomePage() {
         <div>
             <TopPanel />
             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-            <FilterBar />
             <div className="event-container">
                 {filteredEvents.length > 0 ? (
                     filteredEvents.map(event => (

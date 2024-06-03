@@ -6,10 +6,7 @@ import net.javaguides.ems.entity.Event;
 import net.javaguides.ems.service.EventsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,12 @@ public class EventsController {
     public ResponseEntity<EventDTO> getEvent(@PathVariable Long id) {
         EventDTO event = eventsService.getEvent(id);
         return ResponseEntity.ok(event);
+    }
+
+    @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Event> createEvent(@RequestBody EventDTO event) {
+        Event createdEvent = eventsService.createEvent(event);
+        return ResponseEntity.ok(createdEvent);
     }
 }

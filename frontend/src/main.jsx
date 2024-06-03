@@ -14,6 +14,7 @@ import ProtectedRoute from './pages/protected_route';
 import InterestedPage from './pages/interested';
 import AccountPage from './pages/account';
 import ReportPage from './pages/report';
+import CreateEventPage from './pages/admin_add_event';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/report",
     element: <ProtectedRoute element={ReportPage} />,
+  },
+  {
+    path: "/add_event",
+    element: <ProtectedRoute element={CreateEventPage} />,
   },
 ]);
 

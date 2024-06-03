@@ -48,9 +48,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/interests/**").permitAll()
                         .requestMatchers("/api/events/interested/**").authenticated()
+                        .requestMatchers("/api/events/create").hasAuthority("ADMIN")
                         .requestMatchers("/api/events/**").permitAll()
                         .requestMatchers("/api/notifications/**").permitAll()
                         .requestMatchers("api/users/**").authenticated()
+                        .requestMatchers("api/categories/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

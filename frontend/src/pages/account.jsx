@@ -49,7 +49,7 @@ function AccountPage() {
                             className="iconpassword" 
                             name="email" 
                             type="email" 
-                            placeholder="new-email@email.com" 
+                            placeholder="New email@email.com" 
                             value={email}
                             onChange={handleEmailChange}
                         />
@@ -65,7 +65,7 @@ function AccountPage() {
                     </form>
                 </div>
             </div>
-            <Bottom-Panel />
+            <BottomPanel />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 package net.javaguides.ems.repository;
 
-import net.javaguides.ems.entity.Event;
+import net.javaguides.ems.entity.EventCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryRepository extends JpaRepository, Long> {
+public interface EventCategoryRepository extends JpaRepository <EventCategory,Long> {
 }

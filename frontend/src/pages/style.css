@@ -129,7 +129,6 @@ form.register input {
     border: 1px solid #E4DFDF;
     margin: 1em;
     flex-shrink: 0;
-
 }
 
 .favorite-header {
@@ -166,20 +165,6 @@ form.register input {
     white-space: nowrap;
 }
 
-.slick-track {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.slick-slide {
-    margin-right: 15px;
-}
-
-.category-item, .slick-slide {
-    box-sizing: border-box;
-}
-
 
 @media screen and (max-aspect-ratio: 16/9) {
     .container {
@@ -190,6 +175,9 @@ form.register input {
         font-size: 12px;
     }
 
+    .title {
+        margin-top: 20%;
+    }
 
     .login-container,
     .logo {
